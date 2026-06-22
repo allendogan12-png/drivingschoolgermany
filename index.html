@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -53,7 +54,7 @@ body:before{
 button{font:inherit}
 button{color:inherit}
 a{color:inherit}
-.container{max-width:1120px;margin:0 auto;padding:0 20px}
+.container{max-width:1320px;margin:0 auto;padding:0 20px}
 .nav-wrap{padding:18px 0 8px;position:sticky;top:0;z-index:30}
 .nav{
   background:rgba(255,255,255,.96);
@@ -68,7 +69,7 @@ a{color:inherit}
   backdrop-filter:blur(8px);
   color:var(--ink);
 }
-.logo{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:900;white-space:nowrap}
+.logo{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:900;white-space:nowrap;border:0;background:transparent;color:inherit;cursor:pointer;text-align:left}
 .logo-icon{
   width:46px;height:46px;border-radius:15px;background:var(--yellow);
   border:3px solid var(--ink);display:grid;place-items:center;font-size:24px;line-height:1;
@@ -93,7 +94,7 @@ a{color:inherit}
   box-shadow:0 4px 0 rgba(0,0,0,.12);
 }
 .menu button:hover,.menu button.active,.menu button[aria-current="page"]{background:var(--yellow);border-color:var(--ink);transform:translateY(-2px)}
-.menu button:focus-visible,.btn:focus-visible,.hub-card:focus-visible,.feature-row:focus-visible{
+.menu button:focus-visible,.btn:focus-visible,.hub-card:focus-visible,.feature-row:focus-visible,.logo:focus-visible,.home-update-link:focus-visible,.to-top:focus-visible{
   outline:4px solid rgba(47,128,255,.55);
   outline-offset:3px;
 }
@@ -139,7 +140,7 @@ a{color:inherit}
   z-index:-1;
 }
 .hero:before,.hero:after{display:block}
-.hero-copy{position:relative;z-index:2;max-width:920px;animation:heroIn .75s ease both}
+.hero-copy{position:relative;z-index:2;max-width:1080px;animation:heroIn .75s ease both}
 .tag{
   display:inline-flex;
   align-items:center;
@@ -212,8 +213,8 @@ h3{line-height:1.12}
 .stat span{font-size:13px;color:var(--muted);font-weight:900}
 .hero-road{
   position:relative;
-  width:min(760px,88vw);
-  height:240px;
+  width:min(980px,90vw);
+  height:260px;
   margin:28px auto 0;
   border:5px solid rgba(23,32,51,.9);
   border-radius:34px;
@@ -396,9 +397,11 @@ h3{line-height:1.12}
   justify-content:space-between;
   gap:10px;
 }
-.section{padding:58px 0}
+.section{padding:86px 0;scroll-margin-top:130px}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:24px}
 .sub{color:#27324a;font-size:18px;font-weight:800;max-width:710px}
+.page:not(#home) .lead{margin-left:0;margin-right:0;max-width:860px}
+.page:not(#home) h1{text-align:left;font-size:clamp(3.4rem,8vw,5.8rem);line-height:.9}
 .eyebrow{font-weight:900;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
 .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -443,6 +446,8 @@ h3{line-height:1.12}
   border-bottom:4px solid rgba(23,32,51,.18);
 }
 .update-card{position:relative;overflow:hidden}
+.home-update-link{width:100%;font:inherit;color:inherit;cursor:pointer}
+.home-update-link:hover{transform:translateY(-4px);box-shadow:0 12px 0 rgba(0,0,0,.14)}
 .update-card:before{
   content:attr(data-label);
   display:inline-block;
@@ -573,15 +578,28 @@ h3{line-height:1.12}
 .version-panel ul{display:grid;gap:9px;list-style:none}
 .version-panel li{color:var(--muted);font-weight:900;line-height:1.4;display:flex;gap:10px;align-items:flex-start}
 .version-panel li:before{content:"\2713";color:var(--blue);font-weight:900;flex:0 0 auto}
-.version-note{
-  margin-top:16px;
-  background:#fff8d8;
-  border:3px solid var(--ink);
-  border-radius:18px;
-  padding:14px;
+.to-top{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  width:54px;
+  height:54px;
+  border:4px solid var(--ink);
+  border-radius:16px;
+  background:var(--yellow);
+  color:var(--ink);
+  font-size:24px;
   font-weight:900;
-  line-height:1.45;
+  box-shadow:0 8px 0 rgba(0,0,0,.16);
+  cursor:pointer;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(12px);
+  transition:opacity .18s ease,transform .18s ease;
+  z-index:50;
 }
+.to-top.show{opacity:1;pointer-events:auto;transform:translateY(0)}
+.to-top:hover{transform:translateY(-3px)}
 .cta{
   background:var(--white);
   border:5px solid var(--ink);
@@ -719,6 +737,7 @@ footer:before{
   .nav{border-width:3px;border-radius:18px}
   .logo{font-size:17px}
   h1{font-size:2.55rem}
+  .page:not(#home) h1{font-size:2.65rem;line-height:.95}
   h2.title{font-size:2rem}
   .cta h2{font-size:2rem}
   .lead{font-size:18px}
@@ -732,6 +751,7 @@ footer:before{
   .version summary{grid-template-columns:1fr auto;gap:10px}
   .version-badge{grid-column:1 / -1;width:max-content}
   .version-body{padding:14px}
+  .to-top{right:14px;bottom:14px;width:48px;height:48px;border-radius:14px}
 }
 </style>
 </head>
@@ -739,7 +759,7 @@ footer:before{
 <div class="nav-wrap">
   <div class="container">
     <nav class="nav" aria-label="Hauptnavigation">
-      <div class="logo"><span class="logo-icon" aria-hidden="true">&#128663;</span><span>Driving School Germany</span></div>
+      <button class="logo" type="button" data-page="home"><span class="logo-icon" aria-hidden="true">&#128663;</span><span>Driving School Germany</span></button>
       <div class="menu">
         <button class="active" type="button" data-page="home" aria-current="page">Home</button>
         <button type="button" data-page="ranks">Ranks</button>
@@ -771,23 +791,23 @@ footer:before{
       <div class="container">
         <div class="section-head reveal">
           <div>
-            <p class="eyebrow">Latest Update</p>
-            <h2 class="title" id="home-updates-title">Update Log</h2>
-            <p class="sub">Direkt auf der Startseite: die wichtigsten Änderungen aus dem echten Update-Verlauf von Driving School Germany.</p>
+            <p class="eyebrow">Updates</p>
+            <h2 class="title" id="home-updates-title">Aktuelle Updates</h2>
+            <p class="sub">Die wichtigsten Änderungen aus dem offiziellen Update-Verlauf von Driving School Germany.</p>
           </div>
           <button class="btn" type="button" data-page="updates">Alle Updates ansehen</button>
         </div>
         <div class="grid3">
-          <article class="update-card featured reveal" data-label="Update 3.0">
-            <h3>&#128663; Biggest Update</h3>
+          <button class="update-card featured reveal home-update-link" type="button" data-page="updates" data-open-update="3.0" data-label="Update 3.0">
+            <h3>&#128663; Großes Update</h3>
             <p>Großes Update für Map, Straßen, Verkehrssysteme, Prüfungen, Fahrzeuge, UI, NPCs und Performance.</p>
             <div class="update-list">
               <span>&#128679; Überarbeitetes Straßennetz</span>
               <span>&#128678; Blitzer, Ampeln und Speed-Limits</span>
               <span>&#9889; Massive Performance-Optimierung</span>
             </div>
-          </article>
-          <article class="update-card reveal delay-1" data-label="Update 2.2">
+          </button>
+          <button class="update-card reveal delay-1 home-update-link" type="button" data-page="updates" data-open-update="2.2" data-label="Update 2.2">
             <h3>&#128736; Map & Systeme</h3>
             <p>Mehr Realismus auf der Karte, bessere Markierungen, stabilere Systeme und angepasste Belohnungen.</p>
             <div class="update-list">
@@ -795,8 +815,8 @@ footer:before{
               <span>&#128176; Höhere Prüfungsbelohnungen</span>
               <span>&#128295; Weniger Fehler und bessere Stabilität</span>
             </div>
-          </article>
-          <article class="update-card reveal delay-2" data-label="Update 2.0.0">
+          </button>
+          <button class="update-card reveal delay-2 home-update-link" type="button" data-page="updates" data-open-update="2.0.0" data-label="Update 2.0.0">
             <h3>&#127949; Fahrzeuge & Prüfungen</h3>
             <p>Motorradprüfung, neue Motorräder, neue Fahrzeuge und automatische Kennzeichen für Spieler.</p>
             <div class="update-list">
@@ -804,7 +824,7 @@ footer:before{
               <span>&#128663; Neue Fahrzeuge und Taxi-Modell</span>
               <span>&#128196; Dynamische Kennzeichen</span>
             </div>
-          </article>
+          </button>
         </div>
       </div>
     </section>
@@ -865,7 +885,7 @@ footer:before{
     <section class="container section">
       <div class="cta reveal">
         <h2>Bereit für die Straße?</h2>
-        <p>Spring rein, bestehe den Test, fahre Jobs und zeig allen deinen Rank in Driving School Germany.</p>
+        <p>Starte ins Spiel, bestehe den Test, fahre Jobs und verbessere deinen Rank in Driving School Germany.</p>
         <div class="btns" style="justify-content:center">
           <a class="btn play" href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">&#9654; Play on Roblox</a>
           <button class="btn" type="button" data-page="feedback">Feedback geben</button>
@@ -908,7 +928,7 @@ footer:before{
       </div>
 
       <div class="version-list reveal visible delay-2">
-        <details class="version" open>
+        <details class="version" data-version="3.0" open>
           <summary>
             <span class="version-badge">v3.0</span>
             <span class="version-title"><strong>&#128663; Update 3.0</strong><span>14.06.2026 - größtes Update in der Geschichte von Driving School Germany</span></span>
@@ -935,11 +955,10 @@ footer:before{
                 </ul>
               </div>
             </div>
-            <p class="version-note">Update 3.0 bringt mehr Realismus, mehr Systeme, bessere Performance und eine deutlich lebendigere Stadt.</p>
           </div>
         </details>
 
-        <details class="version">
+        <details class="version" data-version="2.2">
           <summary>
             <span class="version-badge">v2.2</span>
             <span class="version-title"><strong>&#128679; Update 2.2</strong><span>09.03.2026 - Performance, Map und System Improvements</span></span>
@@ -1052,7 +1071,7 @@ footer:before{
           </div>
         </details>
 
-        <details class="version">
+        <details class="version" data-version="2.0.0">
           <summary>
             <span class="version-badge">v2.0.0</span>
             <span class="version-title"><strong>&#127949; Update 2.0.0</strong><span>29.01.2026 - Motorräder, Prüfungen, Fahrzeuge und Kennzeichen</span></span>
@@ -1567,7 +1586,7 @@ footer:before{
           <div class="btns">
             <a class="btn play" href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">Zum Roblox-Spiel</a>
           </div>
-          <p><b>Feedback-Kanal:</b> Wird vor Veröffentlichung der Website ergänzt.</p>
+          <p><b>Kontakt:</b> TikTok @driving_school.rblx. Weitere Kontaktmöglichkeiten werden zur Veröffentlichung ergänzt.</p>
         </div>
         <div class="card reveal visible delay-1">
           <h3>Was hilft am meisten?</h3>
@@ -1584,7 +1603,7 @@ footer:before{
     <div class="container section">
       <div class="cta reveal visible">
         <h2 id="play-title">Bereit für den Test?</h2>
-        <p>Halte die Regeln ein, beweise deine Skills und werde Elite Driver.</p>
+        <p>Halte die Regeln ein, fahre sauber und arbeite dich bis zum Elite Driver hoch.</p>
         <a class="btn play" href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">Play Fahrschul Simulator Deutschland</a>
       </div>
       <div class="grid4">
@@ -1685,6 +1704,8 @@ footer:before{
   </section>
 </main>
 
+<button class="to-top" type="button" aria-label="Nach oben">&#8593;</button>
+
 <footer>
   <div class="container footer-inner">
     <div class="social-row" aria-label="Social links">
@@ -1720,6 +1741,7 @@ footer:before{
   const navButtons = document.querySelectorAll(".menu button");
   const revealItems = document.querySelectorAll(".reveal");
   const heroCar = document.querySelector("#hero-car");
+  const toTopButton = document.querySelector(".to-top");
 
   function showPage(id){
     pages.forEach(function(page){
@@ -1737,9 +1759,29 @@ footer:before{
     window.scrollTo({top:0, behavior:"smooth"});
   }
 
+  function openUpdate(version){
+    const versions = document.querySelectorAll(".version");
+    let target = null;
+    versions.forEach(function(item){
+      const isTarget = item.dataset.version === version;
+      item.open = isTarget;
+      if(isTarget){
+        target = item;
+      }
+    });
+    if(target){
+      setTimeout(function(){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      }, 180);
+    }
+  }
+
   buttons.forEach(function(button){
     button.addEventListener("click", function(){
       showPage(button.dataset.page);
+      if(button.dataset.openUpdate){
+        openUpdate(button.dataset.openUpdate);
+      }
     });
   });
 
@@ -1782,8 +1824,21 @@ footer:before{
     heroCar.style.setProperty("--drive-tilt", tilt + "deg");
   }
 
+  function updateToTopButton(){
+    if(!toTopButton){ return; }
+    toTopButton.classList.toggle("show", window.scrollY > 420);
+  }
+
+  if(toTopButton){
+    toTopButton.addEventListener("click", function(){
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
+
   updateHeroCar();
+  updateToTopButton();
   window.addEventListener("scroll", updateHeroCar, {passive:true});
+  window.addEventListener("scroll", updateToTopButton, {passive:true});
 
 </script>
 </body>
