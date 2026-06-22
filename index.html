@@ -1,0 +1,1790 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Driving School Germany - Roblox Driving Game mit Führerschein, Praxisprüfung, Jobs, Update Log und Rank-System.">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Driving School Germany">
+<meta property="og:description" content="Bestehe den Test, fahre durch Deutschland und werde Elite Driver.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Driving School Germany">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#7bdcff">
+<title>Driving School Germany</title>
+<style>
+:root{
+  --sky:#7bdcff;
+  --sky-soft:#c9f4ff;
+  --grass:#55c965;
+  --grass-deep:#3ca851;
+  --ink:#172033;
+  --muted:#526072;
+  --yellow:#ffd43b;
+  --blue:#2f80ff;
+  --purple:#8b5cf6;
+  --soft:#eef4ff;
+  --white:#fff;
+  --red:#ff4b4b;
+  --orange:#ff9f1a;
+  --shadow:0 8px 0 rgba(0,0,0,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--ink);
+  min-height:100vh;
+  background:
+    linear-gradient(var(--sky) 0%,var(--sky-soft) 42%,#70dd72 42%,var(--grass-deep) 100%);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 16% 16%,rgba(255,255,255,.55) 0 34px,transparent 35px),
+    radial-gradient(circle at 78% 20%,rgba(255,255,255,.48) 0 46px,transparent 47px),
+    linear-gradient(transparent 0 58%,rgba(255,255,255,.14) 58% 60%,transparent 60%);
+  pointer-events:none;
+}
+button{font:inherit}
+button{color:inherit}
+a{color:inherit}
+.container{max-width:1120px;margin:0 auto;padding:0 20px}
+.nav-wrap{padding:18px 0 8px;position:sticky;top:0;z-index:30}
+.nav{
+  background:rgba(255,255,255,.96);
+  border:4px solid var(--ink);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:12px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  backdrop-filter:blur(8px);
+  color:var(--ink);
+}
+.logo{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:900;white-space:nowrap}
+.logo-icon{
+  width:46px;height:46px;border-radius:15px;background:var(--yellow);
+  border:3px solid var(--ink);display:grid;place-items:center;font-size:24px;line-height:1;
+  animation:logoDrive 2.8s ease-in-out infinite;
+}
+.menu{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+.menu button,.hub-card{
+  border:3px solid var(--ink);
+  border-radius:14px;
+  background:#edf3ff;
+  padding:10px 13px;
+  font-weight:900;
+  cursor:pointer;
+  box-shadow:0 4px 0 rgba(0,0,0,.12);
+  transition:transform .14s ease,background .14s ease,box-shadow .14s ease;
+  color:var(--ink);
+}
+.menu button{
+  border-color:var(--ink);
+  background:#edf3ff;
+  color:var(--ink);
+  box-shadow:0 4px 0 rgba(0,0,0,.12);
+}
+.menu button:hover,.menu button.active,.menu button[aria-current="page"]{background:var(--yellow);border-color:var(--ink);transform:translateY(-2px)}
+.menu button:focus-visible,.btn:focus-visible,.hub-card:focus-visible,.feature-row:focus-visible{
+  outline:4px solid rgba(47,128,255,.55);
+  outline-offset:3px;
+}
+.page{display:none}
+.page.active{display:block}
+#home .container.hero{max-width:none;width:100%;padding-left:20px;padding-right:20px}
+.hero{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr;
+  justify-items:center;
+  text-align:center;
+  gap:18px;
+  align-items:center;
+  min-height:calc(100vh - 92px);
+  padding-top:72px;
+  padding-bottom:130px;
+  overflow:hidden;
+  border-bottom:5px solid rgba(23,32,51,.12);
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(13,139,209,.18),rgba(5,91,143,.26)),
+    radial-gradient(circle at 50% 30%,rgba(255,255,255,.28) 0 130px,transparent 132px),
+    radial-gradient(circle at 16% 18%,rgba(255,255,255,.42) 0 36px,transparent 38px),
+    radial-gradient(circle at 82% 19%,rgba(255,255,255,.36) 0 50px,transparent 52px),
+    linear-gradient(135deg,#18bbed 0%,#42c8f5 48%,#0f91c5 100%);
+  z-index:-2;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  left:-4%;
+  right:-4%;
+  bottom:-54px;
+  height:125px;
+  background:var(--white);
+  border-top:5px solid rgba(23,32,51,.18);
+  transform:rotate(-2deg);
+  z-index:-1;
+}
+.hero:before,.hero:after{display:block}
+.hero-copy{position:relative;z-index:2;max-width:920px;animation:heroIn .75s ease both}
+.tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:var(--yellow);
+  border:4px solid var(--ink);
+  border-radius:16px;
+  padding:10px 14px;
+  font-weight:900;
+  box-shadow:0 6px 0 rgba(0,0,0,.14);
+  transform:rotate(-2deg);
+  margin-bottom:18px;
+}
+h1{
+  font-size:6.2rem;
+  line-height:.82;
+  letter-spacing:0;
+  text-transform:uppercase;
+  text-shadow:0 7px 0 rgba(0,0,0,.13);
+  margin-bottom:20px;
+}
+h2.title{
+  font-size:2.65rem;
+  line-height:1;
+  letter-spacing:0;
+  text-transform:uppercase;
+  margin-bottom:12px;
+  text-shadow:0 4px 0 rgba(0,0,0,.08);
+}
+h3{line-height:1.12}
+.blue{color:var(--blue)}
+.purple{color:var(--purple)}
+.lead{font-size:21px;line-height:1.5;color:#27324a;font-weight:900;max-width:720px;margin:0 auto 24px}
+.btns{display:flex;gap:13px;flex-wrap:wrap;margin:22px 0 26px;justify-content:center}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  border:4px solid var(--ink);
+  border-radius:16px;
+  padding:14px 20px;
+  font-weight:900;
+  background:var(--white);
+  box-shadow:0 8px 0 rgba(0,0,0,.15);
+  cursor:pointer;
+  transition:transform .14s ease,box-shadow .14s ease,background .14s ease;
+  color:var(--ink);
+  text-decoration:none;
+}
+.btn:hover{transform:translateY(-4px);box-shadow:0 12px 0 rgba(0,0,0,.14)}
+.btn.play{background:var(--yellow)}
+.hero .btn.play{
+  font-size:22px;
+  padding:18px 32px;
+  border-radius:20px;
+  animation:playPulse 1.7s ease-in-out infinite;
+}
+.btn.dark{background:var(--ink);color:var(--white)}
+.stats{display:none}
+.stat{
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:18px;
+  padding:15px;
+  box-shadow:0 7px 0 rgba(0,0,0,.13);
+  text-align:center;
+}
+.stat b{display:block;font-size:28px;line-height:1}
+.stat span{font-size:13px;color:var(--muted);font-weight:900}
+.hero-road{
+  position:relative;
+  width:min(760px,88vw);
+  height:240px;
+  margin:28px auto 0;
+  border:5px solid rgba(23,32,51,.9);
+  border-radius:34px;
+  overflow:hidden;
+  background:linear-gradient(90deg,#242a33,#383f4b 48%,#242a33);
+  box-shadow:0 16px 0 rgba(0,0,0,.15);
+  transform:perspective(760px) rotateX(18deg);
+}
+.hero-road:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:-60px;
+  width:18px;
+  height:420px;
+  transform:translateX(-50%);
+  background:repeating-linear-gradient(to bottom,var(--yellow) 0 38px,transparent 38px 76px);
+  animation:roadMove 1.35s linear infinite;
+}
+.hero-road:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 45%,rgba(0,0,0,.24));
+  pointer-events:none;
+}
+.hero-car{
+  position:absolute;
+  left:50%;
+  bottom:22px;
+  width:118px;
+  height:164px;
+  transform:translateX(-50%) translateY(var(--drive-offset,0px)) rotate(var(--drive-tilt,0deg));
+  background:var(--red);
+  border:5px solid var(--ink);
+  border-radius:31px 31px 20px 20px;
+  box-shadow:0 10px 0 rgba(0,0,0,.22);
+  z-index:2;
+  transition:transform .12s linear;
+}
+.hero-car:before{
+  content:"";
+  position:absolute;
+  left:17px;right:17px;top:26px;
+  height:46px;
+  background:#9fe8ff;
+  border:4px solid var(--ink);
+  border-radius:15px;
+}
+.hero-car:after{
+  content:"";
+  position:absolute;
+  left:21px;right:21px;bottom:25px;
+  height:32px;
+  background:var(--yellow);
+  border:4px solid var(--ink);
+  border-radius:12px;
+}
+.hero-car .wheel{top:66px}
+.hero .game-preview{display:none}
+.game-preview{position:relative;min-height:540px;max-width:450px;width:100%;margin-left:auto;margin-right:auto;animation:previewIn .9s ease both .12s}
+.road{
+  position:absolute;
+  left:50%;top:5px;
+  transform:translateX(-50%) perspective(520px) rotateX(18deg);
+  width:302px;height:520px;
+  background:linear-gradient(90deg,#252a33,#343b48,#252a33);
+  border-left:9px solid #20242c;
+  border-right:9px solid #20242c;
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:0 22px 0 rgba(0,0,0,.12);
+}
+.road:before{
+  content:"";
+  position:absolute;
+  left:50%;top:-90px;
+  width:14px;height:760px;
+  transform:translateX(-50%);
+  background:repeating-linear-gradient(to bottom,var(--yellow) 0 34px,transparent 34px 68px);
+  animation:roadMove 1.4s linear infinite;
+}
+.road:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),transparent 42%,rgba(0,0,0,.16));
+}
+.road-sign{
+  position:absolute;
+  left:0;
+  bottom:120px;
+  width:86px;
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:14px;
+  padding:8px 5px;
+  box-shadow:0 7px 0 rgba(0,0,0,.13);
+  text-align:center;
+  font-weight:900;
+  font-size:13px;
+  animation:floaty 3s ease-in-out infinite;
+}
+.road-sign:after{
+  content:"";
+  position:absolute;
+  left:50%;top:100%;
+  width:8px;height:46px;
+  background:var(--ink);
+  transform:translateX(-50%);
+}
+.city-card{
+  position:absolute;
+  left:-6px;
+  top:52px;
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:18px;
+  padding:12px;
+  width:168px;
+  box-shadow:0 8px 0 rgba(0,0,0,.13);
+  font-weight:900;
+  animation:floaty 3.4s ease-in-out infinite .2s;
+}
+.city-card small{display:block;color:var(--muted);margin-top:4px}
+.car{
+  position:absolute;
+  left:50%;bottom:62px;
+  transform:translateX(-50%);
+  width:124px;height:195px;
+  background:var(--red);
+  border:5px solid var(--ink);
+  border-radius:31px 31px 20px 20px;
+  box-shadow:0 11px 0 rgba(0,0,0,.22);
+  animation:carBounce 1.55s ease-in-out infinite;
+}
+.car:before{
+  content:"";
+  position:absolute;
+  left:18px;right:18px;top:29px;
+  height:52px;
+  background:#9fe8ff;
+  border:4px solid var(--ink);
+  border-radius:16px;
+}
+.car:after{
+  content:"";
+  position:absolute;
+  left:22px;right:22px;bottom:30px;
+  height:36px;
+  background:var(--yellow);
+  border:4px solid var(--ink);
+  border-radius:13px;
+}
+.wheel{position:absolute;width:24px;height:52px;background:#101827;border:4px solid var(--ink);border-radius:14px}
+.wheel.left{left:-17px;top:76px}
+.wheel.right{right:-17px;top:76px}
+.mini-ui{
+  position:absolute;
+  right:-5px;top:25px;
+  width:245px;
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:22px;
+  padding:15px;
+  box-shadow:0 9px 0 rgba(0,0,0,.15);
+  animation:floaty 3.1s ease-in-out infinite .35s;
+}
+.mini-ui h3{font-size:23px;color:var(--purple);margin-bottom:8px}
+.bar{height:13px;background:#e5e7eb;border:3px solid var(--ink);border-radius:999px;overflow:hidden;margin:10px 0}
+.bar span{display:block;width:74%;height:100%;background:var(--purple);animation:barPulse 2.2s ease-in-out infinite}
+.task{
+  margin-top:10px;
+  background:var(--soft);
+  border:3px solid var(--ink);
+  border-radius:14px;
+  padding:10px;
+  font-weight:900;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.section{padding:58px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:24px}
+.sub{color:#27324a;font-size:18px;font-weight:800;max-width:710px}
+.eyebrow{font-weight:900;color:var(--blue);text-transform:uppercase;margin-bottom:8px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.feature-list{display:grid;gap:14px}
+.feature-row{
+  width:100%;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:16px;
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:22px;
+  padding:20px;
+  box-shadow:var(--shadow);
+  text-align:left;
+  cursor:pointer;
+  color:var(--ink);
+  transition:transform .14s ease,box-shadow .14s ease,background .14s ease;
+}
+.feature-row:hover{transform:translateY(-3px);box-shadow:0 11px 0 rgba(0,0,0,.14);background:#fff8d8}
+.feature-row .icon{margin:0}
+.feature-row h3{font-size:22px;margin-bottom:5px}
+.feature-row p{color:var(--muted);font-weight:800;line-height:1.45}
+.feature-arrow{font-size:26px;font-weight:900;color:var(--blue)}
+.card,.hub-card,.update-card,.step-card{
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:22px;
+  padding:22px;
+  box-shadow:var(--shadow);
+  text-align:left;
+}
+.hub-card{width:100%}
+.card h3,.hub-card h3,.update-card h3,.step-card h3{font-size:22px;margin-bottom:10px}
+.card p,.card li,.hub-card p,.update-card p,.step-card p{color:var(--muted);font-weight:800;line-height:1.45}
+.icon{font-size:36px;margin-bottom:12px;line-height:1}
+.home-updates{
+  background:rgba(255,255,255,.34);
+  border-top:4px solid rgba(23,32,51,.18);
+  border-bottom:4px solid rgba(23,32,51,.18);
+}
+.update-card{position:relative;overflow:hidden}
+.update-card:before{
+  content:attr(data-label);
+  display:inline-block;
+  background:var(--yellow);
+  border:3px solid var(--ink);
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:12px;
+  font-weight:900;
+  margin-bottom:13px;
+}
+.update-card.featured{background:#fff8d8}
+.update-list{display:grid;gap:10px;margin-top:14px}
+.update-list span{
+  display:flex;
+  gap:9px;
+  align-items:flex-start;
+  background:rgba(238,244,255,.9);
+  border:3px solid var(--ink);
+  border-radius:14px;
+  padding:10px;
+  font-weight:900;
+}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:step}
+.step-card{position:relative;min-height:210px}
+.step-card:before{
+  counter-increment:step;
+  content:counter(step);
+  width:42px;height:42px;border:4px solid var(--ink);border-radius:14px;background:var(--yellow);
+  display:grid;place-items:center;font-weight:900;font-size:22px;margin-bottom:14px;
+  box-shadow:0 5px 0 rgba(0,0,0,.13);
+}
+.rank-preview{
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:18px;
+  align-items:stretch;
+}
+.rank-line{
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:22px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+.rank-track{display:grid;gap:12px;margin-top:18px}
+.rank-row{display:grid;grid-template-columns:112px 1fr 70px;gap:12px;align-items:center;font-weight:900}
+.rank-meter{height:18px;background:#dfe7f3;border:3px solid var(--ink);border-radius:999px;overflow:hidden}
+.rank-meter span{display:block;height:100%;background:var(--blue)}
+.rank-meter .green{background:#2fd86b}
+.rank-meter .purple-fill{background:var(--purple)}
+.rankgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.rank{
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:18px;
+  padding:17px 8px;
+  box-shadow:0 7px 0 rgba(0,0,0,.13);
+  font-weight:900;
+  text-align:center;
+}
+.rank small{color:var(--muted)}
+.dot{width:24px;height:24px;border:3px solid var(--ink);border-radius:50%;margin:0 auto 8px}
+.log{display:grid;gap:12px}
+.logitem{
+  background:var(--soft);
+  border:3px solid var(--ink);
+  border-radius:16px;
+  padding:13px;
+  font-weight:900;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.version-list{display:grid;gap:16px;margin-top:18px}
+.version{
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.version summary{
+  list-style:none;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:14px;
+  padding:18px 20px;
+  font-weight:900;
+}
+.version summary::-webkit-details-marker{display:none}
+.version summary:focus-visible{outline:4px solid rgba(47,128,255,.55);outline-offset:-6px}
+.version-badge{
+  background:var(--yellow);
+  border:3px solid var(--ink);
+  border-radius:14px;
+  padding:8px 10px;
+  box-shadow:0 4px 0 rgba(0,0,0,.12);
+}
+.version-title strong{display:block;font-size:22px;margin-bottom:4px}
+.version-title span{color:var(--muted);font-size:14px}
+.version-toggle{
+  width:38px;
+  height:38px;
+  border:3px solid var(--ink);
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background:var(--soft);
+  transition:transform .16s ease,background .16s ease;
+}
+.version[open] .version-toggle{transform:rotate(45deg);background:var(--yellow)}
+.version-body{
+  border-top:4px solid var(--ink);
+  padding:20px;
+  background:linear-gradient(180deg,#fff,#f6f9ff);
+}
+.version-grid{display:grid;grid-template-columns:1fr;gap:14px}
+.version-panel{
+  background:var(--soft);
+  border:3px solid var(--ink);
+  border-radius:18px;
+  padding:16px;
+}
+.version-panel h4{font-size:18px;margin-bottom:10px}
+.version-panel ul{display:grid;gap:9px;list-style:none}
+.version-panel li{color:var(--muted);font-weight:900;line-height:1.4;display:flex;gap:10px;align-items:flex-start}
+.version-panel li:before{content:"\2713";color:var(--blue);font-weight:900;flex:0 0 auto}
+.version-note{
+  margin-top:16px;
+  background:#fff8d8;
+  border:3px solid var(--ink);
+  border-radius:18px;
+  padding:14px;
+  font-weight:900;
+  line-height:1.45;
+}
+.cta{
+  background:var(--white);
+  border:5px solid var(--ink);
+  border-radius:30px;
+  padding:40px 24px;
+  box-shadow:0 12px 0 rgba(0,0,0,.15);
+  text-align:center;
+  margin-bottom:20px;
+}
+.cta h2{font-size:2.55rem;line-height:1.05;text-transform:uppercase;margin-bottom:12px}
+.cta p{color:#27324a;font-size:19px;font-weight:800;margin:0 auto 20px;max-width:680px}
+.legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.legal-card{
+  background:var(--white);
+  border:4px solid var(--ink);
+  border-radius:22px;
+  padding:22px;
+  box-shadow:var(--shadow);
+}
+.legal-card h3{font-size:22px;margin-bottom:12px}
+.legal-card p,.legal-card li{color:var(--muted);font-weight:800;line-height:1.5}
+.legal-list{display:grid;gap:10px;list-style:none}
+.placeholder{
+  display:block;
+  margin-top:5px;
+  padding:10px;
+  background:var(--soft);
+  border:3px solid var(--ink);
+  border-radius:12px;
+  color:var(--ink);
+  font-weight:900;
+}
+.game-link-box{
+  margin-top:12px;
+  background:#fff8d8;
+  border:3px solid var(--ink);
+  border-radius:16px;
+  padding:13px;
+  font-weight:900;
+  overflow-wrap:anywhere;
+}
+footer{
+  position:relative;
+  background:var(--white);
+  color:var(--ink);
+  font-weight:900;
+  padding:92px 0 42px;
+  margin-top:40px;
+  overflow:hidden;
+}
+footer:before{
+  content:"";
+  position:absolute;
+  left:-5%;
+  right:-5%;
+  top:-46px;
+  height:90px;
+  background:var(--white);
+  border-top:5px solid rgba(23,32,51,.16);
+  transform:rotate(2deg);
+}
+.footer-inner{position:relative;z-index:1;text-align:center}
+.social-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+.social-dot{
+  width:52px;height:52px;border:4px solid var(--ink);border-radius:50%;
+  background:var(--blue);color:var(--white);display:grid;place-items:center;
+  font-weight:900;text-decoration:none;box-shadow:0 6px 0 rgba(0,0,0,.13);
+}
+.footer-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;max-width:780px;margin:0 auto 42px;text-align:left}
+.footer-col{display:grid;gap:14px;align-content:start}
+.footer-col + .footer-col{border-left:4px solid rgba(47,128,255,.8);padding-left:34px}
+.footer-link{
+  border:0;
+  background:transparent;
+  color:var(--blue);
+  padding:0;
+  font-weight:900;
+  cursor:pointer;
+  text-align:left;
+  font-size:20px;
+}
+.footer-link:hover{text-decoration:underline}
+.brand-footer{
+  color:var(--blue);
+  font-size:3rem;
+  line-height:.9;
+  text-transform:uppercase;
+  text-align:center;
+  text-shadow:0 5px 0 rgba(47,128,255,.16);
+}
+.brand-footer span{display:block;font-size:1.1rem;color:var(--ink);margin-top:10px;text-transform:none;text-shadow:none}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.delay-1{transition-delay:.08s}
+.delay-2{transition-delay:.16s}
+.delay-3{transition-delay:.24s}
+@keyframes roadMove{from{transform:translateX(-50%) translateY(0)}to{transform:translateX(-50%) translateY(68px)}}
+@keyframes carBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-7px)}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes logoDrive{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg) translateY(-2px)}}
+@keyframes barPulse{0%,100%{width:74%}50%{width:82%}}
+@keyframes heroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes previewIn{from{opacity:0;transform:translateX(28px) scale(.96)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes playPulse{0%,100%{transform:translateY(0) scale(1);box-shadow:0 8px 0 rgba(0,0,0,.15)}50%{transform:translateY(-5px) scale(1.04);box-shadow:0 14px 0 rgba(0,0,0,.13)}}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+@media(max-width:980px){
+  .hero,.grid2,.rank-preview,.legal-grid{grid-template-columns:1fr}
+  .grid4,.grid3,.flow{grid-template-columns:1fr 1fr}
+  .footer-columns{grid-template-columns:1fr;max-width:440px;text-align:center}
+  .footer-col{align-items:center}
+  .footer-col + .footer-col{border-left:0;border-top:4px solid rgba(47,128,255,.8);padding-left:0;padding-top:24px}
+  .footer-link{text-align:center}
+  .rankgrid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+  .nav{align-items:flex-start;flex-direction:column}
+  .menu{width:100%;display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;justify-content:flex-start}
+  .menu button{flex:0 0 auto}
+  .mini-ui{right:50%;transform:translateX(50%);top:18px}
+  .city-card{left:0;top:118px}
+  .road-sign{left:12px;bottom:90px}
+  .hero{padding:56px 16px 104px}
+  .game-preview{min-height:610px}
+  h1{font-size:3.55rem}
+  .section-head{align-items:flex-start;flex-direction:column}
+}
+@media(max-width:620px){
+  .container{padding:0 14px}
+  .grid4,.grid3,.flow,.stats{grid-template-columns:1fr}
+  .feature-row{grid-template-columns:auto 1fr;padding:17px}
+  .feature-arrow{display:none}
+  .nav{border-width:3px;border-radius:18px}
+  .logo{font-size:17px}
+  h1{font-size:2.55rem}
+  h2.title{font-size:2rem}
+  .cta h2{font-size:2rem}
+  .lead{font-size:18px}
+  .hero{min-height:auto;padding:46px 14px 90px}
+  .hero .btn.play{font-size:18px;padding:15px 22px}
+  .brand-footer{font-size:2.35rem}
+  .game-preview{min-height:560px}
+  .road{width:245px;height:465px}
+  .car{width:108px;height:172px}
+  .rank-row{grid-template-columns:92px 1fr 52px;font-size:14px}
+  .version summary{grid-template-columns:1fr auto;gap:10px}
+  .version-badge{grid-column:1 / -1;width:max-content}
+  .version-body{padding:14px}
+}
+</style>
+</head>
+<body>
+<div class="nav-wrap">
+  <div class="container">
+    <nav class="nav" aria-label="Hauptnavigation">
+      <div class="logo"><span class="logo-icon" aria-hidden="true">&#128663;</span><span>Driving School Germany</span></div>
+      <div class="menu">
+        <button class="active" type="button" data-page="home" aria-current="page">Home</button>
+        <button type="button" data-page="ranks">Ranks</button>
+        <button type="button" data-page="updates">Updates</button>
+        <button type="button" data-page="feedback">Feedback</button>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<main>
+  <section id="home" class="page active" aria-labelledby="home-title">
+    <div class="container hero">
+      <div class="hero-copy reveal visible">
+        <div class="tag">&#127465;&#127466; Roblox Driving Game</div>
+        <h1 id="home-title">Driving School<br><span class="blue">Germany</span></h1>
+        <p class="lead">Driving School Germany ist dein Roblox-Fahrspiel: Bestehe Theorie und Praxis, fahre durch deutsche Straßen, erledige Jobs und arbeite dich bis zum Elite Driver hoch.</p>
+        <div class="btns">
+          <a class="btn play" href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">&#9654; Play on Roblox</a>
+          <button class="btn dark" type="button" data-scroll="home-updates">&#128295; Updates ansehen</button>
+        </div>
+        <div class="hero-road" aria-label="Animierte Fahrbahn">
+          <div class="hero-car" id="hero-car"><span class="wheel left"></span><span class="wheel right"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="home-updates section" id="home-updates" aria-labelledby="home-updates-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Latest Update</p>
+            <h2 class="title" id="home-updates-title">Update Log</h2>
+            <p class="sub">Direkt auf der Startseite: die wichtigsten Änderungen aus dem echten Update-Verlauf von Driving School Germany.</p>
+          </div>
+          <button class="btn" type="button" data-page="updates">Alle Updates ansehen</button>
+        </div>
+        <div class="grid3">
+          <article class="update-card featured reveal" data-label="Update 3.0">
+            <h3>&#128663; Biggest Update</h3>
+            <p>Großes Update für Map, Straßen, Verkehrssysteme, Prüfungen, Fahrzeuge, UI, NPCs und Performance.</p>
+            <div class="update-list">
+              <span>&#128679; Überarbeitetes Straßennetz</span>
+              <span>&#128678; Blitzer, Ampeln und Speed-Limits</span>
+              <span>&#9889; Massive Performance-Optimierung</span>
+            </div>
+          </article>
+          <article class="update-card reveal delay-1" data-label="Update 2.2">
+            <h3>&#128736; Map & Systeme</h3>
+            <p>Mehr Realismus auf der Karte, bessere Markierungen, stabilere Systeme und angepasste Belohnungen.</p>
+            <div class="update-list">
+              <span>&#128679; Realistischere Kreuzungen</span>
+              <span>&#128176; Höhere Prüfungsbelohnungen</span>
+              <span>&#128295; Weniger Fehler und bessere Stabilität</span>
+            </div>
+          </article>
+          <article class="update-card reveal delay-2" data-label="Update 2.0.0">
+            <h3>&#127949; Fahrzeuge & Prüfungen</h3>
+            <p>Motorradprüfung, neue Motorräder, neue Fahrzeuge und automatische Kennzeichen für Spieler.</p>
+            <div class="update-list">
+              <span>&#127949; Motorradtraining und Prüfung</span>
+              <span>&#128663; Neue Fahrzeuge und Taxi-Modell</span>
+              <span>&#128196; Dynamische Kennzeichen</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="features-title">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Features</p>
+          <h2 class="title" id="features-title">Was dich im Spiel erwartet</h2>
+          <p class="sub">Driving School Germany verbindet Fahrprüfung, Praxis, Jobs und Fortschritt zu einem klaren Roblox-Fahrerlebnis.</p>
+        </div>
+      </div>
+      <div class="feature-list">
+        <button class="feature-row reveal" type="button" data-page="play"><div class="icon" aria-hidden="true">&#128218;</div><div><h3>Theorie bestehen</h3><p>Lerne Verkehrsregeln und bereite dich auf die erste Prüfung vor.</p></div><span class="feature-arrow">›</span></button>
+        <button class="feature-row reveal delay-1" type="button" data-page="play"><div class="icon" aria-hidden="true">&#128663;</div><div><h3>Praxis bestehen</h3><p>Fahre sauber, halte dich an Regeln und bestehe deine Fahrprüfung.</p></div><span class="feature-arrow">›</span></button>
+        <button class="feature-row reveal delay-2" type="button" data-page="updates"><div class="icon" aria-hidden="true">&#128661;</div><div><h3>Jobs ausführen</h3><p>Nimm Passagiere mit, erledige Aufgaben und sammle Punkte für deinen Fortschritt.</p></div><span class="feature-arrow">›</span></button>
+        <button class="feature-row reveal delay-3" type="button" data-page="ranks"><div class="icon" aria-hidden="true">&#127942;</div><div><h3>Aufsteigen</h3><p>Verbessere deinen Rank und arbeite dich Schritt für Schritt zum Elite Driver hoch.</p></div><span class="feature-arrow">›</span></button>
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="flow-title">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Gameplay</p>
+          <h2 class="title" id="flow-title">So spielt es sich</h2>
+          <p class="sub">Vom ersten Regeltest bis zum Elite Rank: Jede Aktion zahlt auf deinen Fortschritt ein.</p>
+        </div>
+      </div>
+      <div class="flow">
+        <article class="step-card reveal"><h3>Theorie bestehen</h3><p>Lerne Regeln, Verkehrszeichen und sichere Fahrweise.</p></article>
+        <article class="step-card reveal delay-1"><h3>Praxis bestehen</h3><p>Fahre konzentriert, vermeide Fehler und bestehe die Fahrprüfung.</p></article>
+        <article class="step-card reveal delay-2"><h3>Jobs ausführen</h3><p>Fahre Taxi-Jobs, erledige Aufgaben und sammle Punkte.</p></article>
+        <article class="step-card reveal delay-3"><h3>Aufsteigen</h3><p>Verbessere deinen Rank und werde Elite Driver.</p></article>
+      </div>
+    </section>
+
+    <section class="container section" aria-labelledby="home-ranks-title">
+      <div class="rank-preview">
+        <div class="rank-line reveal">
+          <p class="eyebrow">Progress</p>
+          <h2 class="title" id="home-ranks-title">Rank Preview</h2>
+          <p class="sub">Ranks geben Spielern klare Ziele. Dein Fortschritt bleibt sichtbar und jede gute Fahrt bringt dich weiter.</p>
+          <div class="btns">
+            <button class="btn" type="button" data-page="ranks">Rank-System ansehen</button>
+          </div>
+        </div>
+        <div class="rank-line reveal delay-1">
+          <h3>Player Progress</h3>
+          <div class="rank-track">
+            <div class="rank-row"><span>Learner</span><div class="rank-meter"><span style="width:28%"></span></div><span>250+</span></div>
+            <div class="rank-row"><span>Skilled</span><div class="rank-meter"><span class="green" style="width:56%"></span></div><span>1,000+</span></div>
+            <div class="rank-row"><span>Elite</span><div class="rank-meter"><span class="purple-fill" style="width:86%"></span></div><span>12K+</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container section">
+      <div class="cta reveal">
+        <h2>Bereit für die Straße?</h2>
+        <p>Spring rein, bestehe den Test, fahre Jobs und zeig allen deinen Rank in Driving School Germany.</p>
+        <div class="btns" style="justify-content:center">
+          <a class="btn play" href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">&#9654; Play on Roblox</a>
+          <button class="btn" type="button" data-page="feedback">Feedback geben</button>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section id="ranks" class="page" aria-labelledby="ranks-title">
+    <div class="container section">
+      <div class="reveal visible">
+        <p class="eyebrow">Progression</p>
+        <h1 id="ranks-title"><span class="purple">Rank</span> System</h1>
+        <p class="lead">Sammle Punkte durch sauberes Fahren, Taxi-Jobs, Daily Tasks, Prüfungen und City-Erkundung. Dein Rank zeigt sofort, wie weit du in Driving School Germany bist.</p>
+      </div>
+      <div class="rankgrid reveal visible delay-1">
+        <div class="rank"><div class="dot" style="background:#d1d5db"></div>Learner<br><small>0+</small></div>
+        <div class="rank"><div class="dot" style="background:#2f80ff"></div>Novice<br><small>250+</small></div>
+        <div class="rank"><div class="dot" style="background:#2fd86b"></div>Skilled<br><small>1,000+</small></div>
+        <div class="rank"><div class="dot" style="background:#ffd43b"></div>Experienced<br><small>2,500+</small></div>
+        <div class="rank"><div class="dot" style="background:#ff9f1a"></div>Expert<br><small>5,000+</small></div>
+        <div class="rank"><div class="dot" style="background:#ff4b4b"></div>Instructor<br><small>8,000+</small></div>
+        <div class="rank"><div class="dot" style="background:#8b5cf6"></div>Elite<br><small>12,000+</small></div>
+      </div>
+    </div>
+    <div class="container section">
+      <div class="grid2">
+        <div class="card reveal visible"><h3>Warum Ranks?</h3><p>Punkte fühlen sich besser an, wenn sie Fortschritt zeigen. Ranks machen Skill, Aktivität und Status direkt sichtbar.</p></div>
+        <div class="card reveal visible delay-1"><h3>Wie bekomme ich Punkte?</h3><p>Taxi-Jobs, Daily Tasks, Prüfungen, sauberes Fahren, Erkundung und Events helfen dir beim Aufstieg.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="updates" class="page" aria-labelledby="updates-title">
+    <div class="container section">
+      <div class="reveal visible">
+        <p class="eyebrow">Changelog</p>
+        <h1 id="updates-title">Update Verlauf</h1>
+        <p class="lead">Der komplette Verlauf der wichtigsten Driving School Germany Updates. Neueste Versionen stehen oben, jede Version lässt sich einzeln aufklappen.</p>
+      </div>
+
+      <div class="version-list reveal visible delay-2">
+        <details class="version" open>
+          <summary>
+            <span class="version-badge">v3.0</span>
+            <span class="version-title"><strong>&#128663; Update 3.0</strong><span>14.06.2026 - größtes Update in der Geschichte von Driving School Germany</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Map, Straßen und Verkehr</h4>
+                <ul>
+                  <li>Straßennetz, Kreuzungen, Vorfahrtsbereiche und Spurführung überarbeitet</li>
+                  <li>Autobahnnetz erweitert mit neuen Ausfahrten, Schildern und längeren Routen</li>
+                  <li>Neue Blitzer, mobile Blitzer, Rotlichtkameras und automatische Speed-Limit-Erkennung</li>
+                  <li>Ampellogik, Fußgängerampeln, Nachtverhalten und Verkehrsphasen realistischer gemacht</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Fahrgefühl, Prüfungen und Performance</h4>
+                <ul>
+                  <li>Fahrphysik, Handling, Bremsverhalten, Spiegel und Fahrzeugreaktionen verbessert</li>
+                  <li>Theorie, Praxisprüfung, Trainings, Checkpoints und Fahrlehrer-Systeme überarbeitet</li>
+                  <li>NPC-Fußgänger, UI, Rewards, Gruppen-System und Fortschritt verbessert</li>
+                  <li>Massive Optimierungen für weniger Lag, schnellere Ladezeiten und stabileres Gameplay</li>
+                </ul>
+              </div>
+            </div>
+            <p class="version-note">Update 3.0 bringt mehr Realismus, mehr Systeme, bessere Performance und eine deutlich lebendigere Stadt.</p>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v2.2</span>
+            <span class="version-title"><strong>&#128679; Update 2.2</strong><span>09.03.2026 - Performance, Map und System Improvements</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Straßen und Map</h4>
+                <ul>
+                  <li>Straßenrealismus auf der gesamten Karte verbessert</li>
+                  <li>Haifischzähne, 30-km/h-Zonen, Kreuzungen, Schilder und Straßendetails überarbeitet</li>
+                  <li>Mehr parkende Fahrzeuge, Straßendetails und realistischere Fahrwege ergänzt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Performance und Belohnungen</h4>
+                <ul>
+                  <li>Serverlast reduziert und mehrere Systeme für stabileres Gameplay optimiert</li>
+                  <li>Theorie-, Praxis- und Motorradprüfungs-Belohnungen erhöht</li>
+                  <li>Daily Tasks, Explorer Tasks und Upgrades besser belohnt</li>
+                  <li>Prüfungs-, UI-, Fahrzeug- und Checkpoint-Fehler behoben</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v2.1.1</span>
+            <span class="version-title"><strong>&#128739; Update 2.1.1</strong><span>04.03.2026 - neue L06 Straße, Map-Verbesserungen und Fixes</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Neue Inhalte</h4>
+                <ul>
+                  <li>Neue L06 Straße zur Karte hinzugefügt</li>
+                  <li>Neue Kreuzungen und realistischere Routen ergänzt</li>
+                  <li>Straßenmarkierungen, Schilder und Umgebungsdetails verbessert</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Verbesserungen</h4>
+                <ul>
+                  <li>Checkpoint- und Prüfungserkennung stabilisiert</li>
+                  <li>Fahrzeughandling, Spawns und Sounds verbessert</li>
+                  <li>Kleinere UI-Fehler und Systemprobleme behoben</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v2.0.5</span>
+            <span class="version-title"><strong>&#127800; Update 2.0.5</strong><span>01.03.2026 - Spring Refresh, VIP Improvements und Map Update</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Spring Refresh</h4>
+                <ul>
+                  <li>Winterkarte auf Frühling umgestellt</li>
+                  <li>Neue Bäume, frischere Farben, bessere Atmosphäre und schärfere Straßenmarkierungen</li>
+                  <li>Beleuchtung und Map-Stimmung überarbeitet</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>VIP, Fahrzeuge und Stabilität</h4>
+                <ul>
+                  <li>VIP-Badge, goldener Nametag und VIP-Shop verbessert</li>
+                  <li>Motorradprüfung, Trainingserkennung und Fahrzeugspawns stabilisiert</li>
+                  <li>Handling, Kennzeichen, Fahrzeugsounds und World Loading verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v2.0.1</span>
+            <span class="version-title"><strong>&#128150; Update 2.0.1</strong><span>09.02.2026 - Valentine Update</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Event-Inhalte</h4>
+                <ul>
+                  <li>Valentine-Dekorationen mit roten und pinken Lichtern ergänzt</li>
+                  <li>Kostenloses Valentine Car während des Events verfügbar gemacht</li>
+                  <li>Limited Code Valentine2026 mit Punkte-Belohnung eingebaut</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Fixes</h4>
+                <ul>
+                  <li>Kleine Map-Loading-Verbesserungen umgesetzt</li>
+                  <li>Performance leicht angepasst</li>
+                  <li>Fahrzeugspawn-Stabilität verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v2.0.0</span>
+            <span class="version-title"><strong>&#127949; Update 2.0.0</strong><span>29.01.2026 - Motorräder, Prüfungen, Fahrzeuge und Kennzeichen</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Neue Fahrzeuge und Prüfungen</h4>
+                <ul>
+                  <li>Neue Motorradprüfung mit eigener Strecke und realistischen Hindernissen</li>
+                  <li>Neue Motorräder mit verbessertem Handling, Beschleunigung und Bremsverhalten</li>
+                  <li>Überarbeitetes Fahrschulauto, neues Taxi und weitere Fahrzeuge ergänzt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Systeme und Stabilität</h4>
+                <ul>
+                  <li>Dynamische Kennzeichen mit Spielernamen vorne und hinten eingebaut</li>
+                  <li>Prüfungen, Checkpoints, Seat Detection und Fahrzeugspawns stabilisiert</li>
+                  <li>UI-Labels, Icons, Trainingserkennung und World Loading verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.9.8</span>
+            <span class="version-title"><strong>&#128739; Update 1.9.8</strong><span>24.01.2026 - Map, Traffic, Realism, Infrastructure und Buildings</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Map und Infrastruktur</h4>
+                <ul>
+                  <li>Neue Autobahnabschnitte mit besserer Spurführung und stabilerer Traffic AI</li>
+                  <li>Viele neue deutsche Verkehrszeichen, Richtungsschilder und Ortseingänge ergänzt</li>
+                  <li>Rasthof, Bank, Shops, neue Gebäude und Polizeistation als Stadtobjekte hinzugefügt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Umgebung und Optimierung</h4>
+                <ul>
+                  <li>Neue Fußgängerbereiche, Gehwege, Gassen und Übergänge eingebaut</li>
+                  <li>Medians, Kreuzungen, Terrain und Map Loading verbessert</li>
+                  <li>Tree-Animationen, FPS und Fahrzeugphysik optimiert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.9.5</span>
+            <span class="version-title"><strong>&#128661; Update 1.9.5</strong><span>12.01.2026 - Jobs, Taxi, Training, Maps und Immersion</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Jobs und Training</h4>
+                <ul>
+                  <li>Neuer Taxi Job als Beta mit Stadtfahrten und NPC-Passagieren</li>
+                  <li>Rating-System, Fahrtenstatistiken und Fortschritt für Taxi-Fahrten ergänzt</li>
+                  <li>Neues SOS-Training und stark überarbeitetes Praxis-Training eingebaut</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Karte und UI</h4>
+                <ul>
+                  <li>MiniMap und Full Map komplett überarbeitet</li>
+                  <li>Winteratmosphäre, animierte Bäume und Fahrlehrer-Tipps verbessert</li>
+                  <li>UI-Animationen, Traffic Lights 3.0, Performance und Stabilität verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.9</span>
+            <span class="version-title"><strong>&#10052; Update 1.9</strong><span>05.01.2026 - Winter, UI, Training und Immersion</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Winter und Atmosphäre</h4>
+                <ul>
+                  <li>Winter Map Refresh mit neuer Stimmung, Beleuchtung und mehr Leben in der Stadt</li>
+                  <li>Animierte Bäume und optimierte Umgebungssysteme ergänzt</li>
+                  <li>Traffic Lights 3.0 mit realistischeren Kreuzungen und Nachtverhalten verbessert</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Training und UI</h4>
+                <ul>
+                  <li>Fahrlehrer-Tipps v2 mit situationsbasierten Hinweisen während der Fahrt</li>
+                  <li>Training startet stabiler mit Loading Screen und Animation</li>
+                  <li>Menüs, Popups, UI-Animationen und allgemeine Stabilität verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.8</span>
+            <span class="version-title"><strong>&#9981; Update 1.8</strong><span>03.01.2026 - Traffic, Tasks, UI und Immersion</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Neue Inhalte</h4>
+                <ul>
+                  <li>Neue Tankstelle und mehrere Bushaltestellen auf der Karte ergänzt</li>
+                  <li>Fahrlehrer-Tipps oben rechts während der Fahrt eingebaut</li>
+                  <li>Daily Tasks und Explorer Tasks erweitert und gespeichert</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Verkehr und Feedback</h4>
+                <ul>
+                  <li>Traffic Lights 2.0 mit neuer Kreuzung und realistischeren Phasen</li>
+                  <li>Rotlicht-Überwachung mit Fehlerpunkt und Kameraeffekt ergänzt</li>
+                  <li>Driving Feedback, Theorie UI, Handling und Performance verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.7.5</span>
+            <span class="version-title"><strong>&#127881; Update 1.7.5</strong><span>01.01.2026 - Driving Feedback und Immersion</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Feedback-Systeme</h4>
+                <ul>
+                  <li>Indicator Feedback mit direktem Feedback und Bonuspunkten ergänzt</li>
+                  <li>Checkpoint Driving Feedback mit zufälligen Motivationsmeldungen eingebaut</li>
+                  <li>Feedback-Trigger und UI-Timing stabiler gemacht</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Atmosphäre</h4>
+                <ul>
+                  <li>Neue Häuser auf der Karte ergänzt</li>
+                  <li>Fenster leuchten nachts und verbessern die Stadtatmosphäre</li>
+                  <li>Performance, Training und allgemeine Stabilität verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.7</span>
+            <span class="version-title"><strong>&#128179; Update 1.7</strong><span>30.12.2025 - Progression und Economy</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Progression</h4>
+                <ul>
+                  <li>Neues Fortschrittssystem mit Licenses und Points</li>
+                  <li>Ranks basieren auf Licenses und sinken nicht mehr durch Käufe</li>
+                  <li>Daily License Rewards und klarere Systemtrennung ergänzt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Economy und UI</h4>
+                <ul>
+                  <li>Upgrade-System mit dauerhaft gespeicherten Upgrades eingebaut</li>
+                  <li>Rank- und Profil-UI verständlicher gemacht</li>
+                  <li>Balance verbessert, damit Fortschritt fairer und langfristiger wirkt</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.6</span>
+            <span class="version-title"><strong>&#127891; Update 1.6</strong><span>29.12.2025 - Training System</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Training</h4>
+                <ul>
+                  <li>Neues Trainingsmenü getrennt von Prüfungen eingebaut</li>
+                  <li>Parking Training mit Präzisionsaufgabe und Badge ergänzt</li>
+                  <li>Reaction Stop Training mit Reaktionsaufgabe und Badge ergänzt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Verbesserungen</h4>
+                <ul>
+                  <li>Badge-System vereinheitlicht</li>
+                  <li>Menüstruktur für Exams, Training und Exploration klarer gemacht</li>
+                  <li>Feedback-System, Navigation, UI Flow und Performance verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.5</span>
+            <span class="version-title"><strong>&#127941; Update 1.5</strong><span>24.12.2025 - Main Menu und Rank System</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>UI und Ranks</h4>
+                <ul>
+                  <li>Main Menu komplett überarbeitet</li>
+                  <li>Rank-System mit neuen Rank Cards, Farben, Icons und Checkmarks aktualisiert</li>
+                  <li>Theory/Practice Menü, Community Bereich und Lesbarkeit verbessert</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Fixes</h4>
+                <ul>
+                  <li>Groups Menu lädt schneller</li>
+                  <li>Vehicle HUD und Praxis Spawn Issues behoben</li>
+                  <li>UI, Visuals und Performance allgemein optimiert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.4.5</span>
+            <span class="version-title"><strong>&#128506; Update 1.4.5</strong><span>18.11.2025 - Community Maps und Ratings</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Community Maps</h4>
+                <ul>
+                  <li>Eigene Maps können veröffentlicht werden</li>
+                  <li>1-5 Sterne Rating-System und Highlight für Top-Map ergänzt</li>
+                  <li>Community Map Menu mit Map-Liste, Owner und Rating eingebaut</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Fixes</h4>
+                <ul>
+                  <li>Teleport-System für Community Maps eingebaut</li>
+                  <li>Praxis Spawn Issue behoben</li>
+                  <li>Groups Menu und Vehicle Controls stabilisiert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.4</span>
+            <span class="version-title"><strong>&#129521; Update 1.4</strong><span>14.11.2025 - Building System</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Building System</h4>
+                <ul>
+                  <li>Neues Building System 1.0 von Grund auf eingebaut</li>
+                  <li>Live Ghost Preview, Snap-to-Grid, Rotation und Move Gizmo ergänzt</li>
+                  <li>Kategorien, Item Browser und Model Variants hinzugefügt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Build Items</h4>
+                <ul>
+                  <li>Erste Straßenstücke, Schilder und Dekorationen ergänzt</li>
+                  <li>Performance und UI Loading beim Bauen verbessert</li>
+                  <li>Kleine Map Fixes und Visual Cleanups umgesetzt</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.3</span>
+            <span class="version-title"><strong>&#128101; Update 1.3</strong><span>07.11.2025 - Group System und Interactive Signs 2.0</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Neue Systeme</h4>
+                <ul>
+                  <li>Group System mit Erstellen, Beitreten, Owner Transfer und Member-Liste ergänzt</li>
+                  <li>Interactive Signs 2.0 mit Stop, Vorfahrt, Einbahnstraße, Speed Limit und weiteren Schildern</li>
+                  <li>Profil-Popup mit Add Friend und Block hinzugefügt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Polish</h4>
+                <ul>
+                  <li>Visuals, Licht, Reflektionen und Traffic-Light-Farben verbessert</li>
+                  <li>Handling, Steering, Brake Feel und UI/UX überarbeitet</li>
+                  <li>Bug Fixes und Performance-Optimierungen umgesetzt</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.2</span>
+            <span class="version-title"><strong>&#128678; Update 1.2</strong><span>06.11.2025 - Clickable Traffic Signs und Retry System</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Neue Inhalte</h4>
+                <ul>
+                  <li>Verkehrsschilder anklickbar mit kurzen Lerninfos</li>
+                  <li>Driving Physics verbessert für weichere Kontrolle und schnellere Reaktion</li>
+                  <li>Retry System für die Praxisprüfung ergänzt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Prüfung und Stabilität</h4>
+                <ul>
+                  <li>Neues Mistake Point System bei Kollisionen während der Prüfung</li>
+                  <li>Bug Fixes, Performance und Prüfungsablauf verbessert</li>
+                  <li>Alter Practice Vehicle Spawner durch sauberes System ersetzt</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.1.7</span>
+            <span class="version-title"><strong>&#127881; Update 1.1.7</strong><span>05.11.2025 - Daily Points, Car Physics und Confetti</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Neue Inhalte</h4>
+                <ul>
+                  <li>Neues Daily Points UI mit klarerem Claim Flow</li>
+                  <li>Neue Car Physics mit besserem Start, Grip und Bremsgefühl</li>
+                  <li>Confetti Animation nach bestandener Theorieprüfung ergänzt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Bekannte Punkte</h4>
+                <ul>
+                  <li>Problem beim Fahren auf Gleisen untersucht</li>
+                  <li>Richtungspfeil in der Praxisprüfung in Sonderfällen geprüft</li>
+                  <li>Dynamic Weather als kommendes Feature vorbereitet</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.1.5</span>
+            <span class="version-title"><strong>&#128663; Update 1.1.5</strong><span>31.10.2025 - Vehicle, Map Areas und Traffic Lights</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Neue Inhalte</h4>
+                <ul>
+                  <li>Neues Fahrzeug Flair 480 hinzugefügt</li>
+                  <li>Neue Map Areas, Kreuzungen, Markierungen und Traffic Flow verbessert</li>
+                  <li>Traffic Lights mit realistischeren Timings und besserer AI-Kontrolle verbessert</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Verbesserungen</h4>
+                <ul>
+                  <li>Viele kleinere Bugs behoben</li>
+                  <li>Vehicle Physics überarbeitet</li>
+                  <li>Ladezeiten, Performance und Gameplay auf allen Geräten verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.1</span>
+            <span class="version-title"><strong>&#127961; Update 1.1</strong><span>24.10.2025 - AI Traffic und neuer Stadtbereich</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Neue Inhalte</h4>
+                <ul>
+                  <li>AI Traffic fährt durch die Stadt</li>
+                  <li>Neuer östlicher Stadtbereich mit Straßen und Umgebung ergänzt</li>
+                  <li>Dynamic Weather als kommendes Feature angekündigt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Verbesserungen</h4>
+                <ul>
+                  <li>Performance auf allen Geräten optimiert</li>
+                  <li>Vehicle Handling und UI-Stabilität verbessert</li>
+                  <li>Licht, Atmosphäre und Visuals überarbeitet</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.0.5</span>
+            <span class="version-title"><strong>&#127873; Update 1.0.5</strong><span>20.10.2025 - Points, Daily Login und Walking NPCs</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Neue Inhalte</h4>
+                <ul>
+                  <li>Punkte können während des Fahrens verdient werden</li>
+                  <li>Daily Login Bonus für tägliche Rückkehr ergänzt</li>
+                  <li>Walking NPCs bringen mehr Leben in die Stadt</li>
+                  <li>Blinker, Warnblinker und weitere Fahrfunktionen ergänzt</li>
+                </ul>
+              </div>
+              <div class="version-panel">
+                <h4>Verbesserungen</h4>
+                <ul>
+                  <li>Free Explore Mode flüssiger gemacht</li>
+                  <li>UI, Menüs, Performance und Fahrgefühl verbessert</li>
+                  <li>Viele Bugs behoben und Systeme stabilisiert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="version">
+          <summary>
+            <span class="version-badge">v1.0</span>
+            <span class="version-title"><strong>&#127881; Release V1.0</strong><span>Erster offizieller Release von Driving School Germany</span></span>
+            <span class="version-toggle" aria-hidden="true">+</span>
+          </summary>
+          <div class="version-body">
+            <div class="version-grid">
+              <div class="version-panel">
+                <h4>Release-Inhalte</h4>
+                <ul>
+                  <li>Neue und verbesserte Karte mit realistischen Straßen</li>
+                  <li>Funktionierende Fahrprüfungen mit Punkten und Belohnungen</li>
+                  <li>Settings Menu für Audio und Gameplay eingebaut</li>
+                  <li>Performance, Bug Fixes und viele Details für das Fahrschul-Erlebnis verbessert</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="feedback" class="page" aria-labelledby="feedback-title">
+    <div class="container section">
+      <div class="reveal visible">
+        <p class="eyebrow">Community</p>
+        <h1 id="feedback-title">Feedback</h1>
+        <p class="lead">Bug gefunden oder eine Idee? Gutes Feedback macht Driving School Germany schneller, fairer und besser spielbar.</p>
+      </div>
+      <div class="grid2">
+        <div class="card reveal visible">
+          <h3>&#128172; Feedback geben</h3>
+          <p>Hilf mit, Driving School Germany weiter zu verbessern. Melde Bugs, schlage neue Fahrzeuge vor oder sag, welche Prüfung, Straße oder Funktion verbessert werden soll.</p>
+          <div class="btns">
+            <a class="btn play" href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">Zum Roblox-Spiel</a>
+          </div>
+          <p><b>Feedback-Kanal:</b> Wird vor Veröffentlichung der Website ergänzt.</p>
+        </div>
+        <div class="card reveal visible delay-1">
+          <h3>Was hilft am meisten?</h3>
+          <p>Schreib kurz, was passiert ist, wo es passiert ist und ob du auf PC, Mobile, Tablet oder Konsole gespielt hast. Screenshots oder kurze Clips helfen besonders bei UI- und Fahrzeug-Bugs.</p>
+          <br>
+          <p><b>TikTok:</b> @driving_school.rblx</p>
+          <p><b>Game:</b> Driving School Germany</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="play" class="page" aria-labelledby="play-title">
+    <div class="container section">
+      <div class="cta reveal visible">
+        <h2 id="play-title">Bereit für den Test?</h2>
+        <p>Halte die Regeln ein, beweise deine Skills und werde Elite Driver.</p>
+        <a class="btn play" href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">Play Fahrschul Simulator Deutschland</a>
+      </div>
+      <div class="grid4">
+        <div class="card reveal visible"><div class="icon" aria-hidden="true">&#128218;</div><h3>1. Theorie</h3><p>Lerne Verkehrsregeln und Zeichen.</p></div>
+        <div class="card reveal visible delay-1"><div class="icon" aria-hidden="true">&#128663;</div><h3>2. Praxis</h3><p>Bestehe deine Fahrprüfung.</p></div>
+        <div class="card reveal visible delay-2"><div class="icon" aria-hidden="true">&#128661;</div><h3>3. Jobs</h3><p>Führe Jobs aus und sammle Punkte.</p></div>
+        <div class="card reveal visible delay-3"><div class="icon" aria-hidden="true">&#127942;</div><h3>4. Aufstieg</h3><p>Arbeite dich bis zum Elite Driver hoch.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impressum" class="page" aria-labelledby="impressum-title">
+    <div class="container section">
+      <div class="reveal visible">
+        <p class="eyebrow">Legal</p>
+        <h1 id="impressum-title">Impressum</h1>
+        <p class="lead">Das vollständige Impressum wird vor Veröffentlichung der Website ergänzt.</p>
+      </div>
+
+      <div class="legal-grid">
+        <div class="legal-card reveal visible">
+          <h3>Angaben gemäß Paragraf 5 DDG</h3>
+          <ul class="legal-list">
+            <li>Betreiber / Verantwortliche Person <span class="placeholder">Wird vor Veröffentlichung der Website ergänzt.</span></li>
+            <li>Anschrift <span class="placeholder">Wird vor Veröffentlichung der Website ergänzt.</span></li>
+            <li>Kontakt E-Mail <span class="placeholder">Wird vor Veröffentlichung der Website ergänzt.</span></li>
+            <li>Telefon <span class="placeholder">Wird vor Veröffentlichung der Website ergänzt.</span></li>
+          </ul>
+        </div>
+
+        <div class="legal-card reveal visible delay-1">
+          <h3>Weitere Pflichtangaben</h3>
+          <ul class="legal-list">
+            <li>Vertreten durch <span class="placeholder">Wird vor Veröffentlichung der Website ergänzt.</span></li>
+            <li>Umsatzsteuer-ID <span class="placeholder">Wird vor Veröffentlichung der Website ergänzt.</span></li>
+            <li>Registereintrag <span class="placeholder">Wird vor Veröffentlichung der Website ergänzt.</span></li>
+            <li>Aufsichtsbehörde <span class="placeholder">Wird vor Veröffentlichung der Website ergänzt.</span></li>
+          </ul>
+        </div>
+
+        <div class="legal-card reveal visible">
+          <h3>Roblox Game</h3>
+          <p>Offizieller Game-Link für diese Website:</p>
+          <div class="game-link-box">
+            Game ID: 121813712597511<br>
+            <a href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">Fahrschul Simulator Deutschland auf Roblox öffnen</a>
+          </div>
+          <br>
+          <p>Roblox ist eine Marke der Roblox Corporation. Diese Website ist eine Fan-/Projektseite und nicht offiziell von Roblox betrieben, falls du keine offizielle Roblox-Partnerschaft hast.</p>
+        </div>
+
+        <div class="legal-card reveal visible delay-1">
+          <h3>Inhaltlich verantwortlich</h3>
+          <p>Verantwortlich für Inhalte dieser Website:</p>
+          <span class="placeholder">Wird vor Veröffentlichung der Website ergänzt.</span>
+          <br>
+          <p>Das vollständige Impressum wird vor Veröffentlichung der Website ergänzt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="datenschutz" class="page" aria-labelledby="datenschutz-title">
+    <div class="container section">
+      <div class="reveal visible">
+        <p class="eyebrow">Datenschutz</p>
+        <h1 id="datenschutz-title">Datenschutz</h1>
+        <p class="lead">Die vollständige Datenschutzerklärung wird vor Veröffentlichung der Website ergänzt.</p>
+      </div>
+
+      <div class="legal-grid">
+        <div class="legal-card reveal visible">
+          <h3>Grundsatz</h3>
+          <p>Diese Website ist als Informationsseite für Driving School Germany vorbereitet. Personenbezogene Daten sollen nur verarbeitet werden, wenn dies für Betrieb, Kontakt oder gesetzliche Pflichten erforderlich ist.</p>
+          <br>
+          <p><b>Status:</b> Die finalen Angaben zu Hosting, Kontakt, Analyse-Tools und externen Diensten werden vor Veröffentlichung der Website ergänzt.</p>
+        </div>
+
+        <div class="legal-card reveal visible delay-1">
+          <h3>Externe Links</h3>
+          <p>Die Website verlinkt auf Roblox. Beim Öffnen externer Links gelten die Datenschutz- und Nutzungsbedingungen des jeweiligen Anbieters.</p>
+          <div class="game-link-box">
+            <a href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">Driving School Germany auf Roblox öffnen</a>
+          </div>
+        </div>
+
+        <div class="legal-card reveal visible">
+          <h3>Kontakt und Feedback</h3>
+          <p>Ein endgültiger Feedback- oder Kontaktweg wird vor Veröffentlichung der Website ergänzt. Bis dahin werden über diese Website keine Feedback-Daten an ein Backend gesendet.</p>
+        </div>
+
+        <div class="legal-card reveal visible delay-1">
+          <h3>Hinweis</h3>
+          <p>Diese Datenschutzerklärung ist vorbereitet und muss vor Veröffentlichung mit den tatsächlichen Hosting-, Kontakt- und Dienstanbieter-Daten abgeglichen werden.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="social-row" aria-label="Social links">
+      <a class="social-dot" href="https://www.roblox.com/de/games/121813712597511/Fahrschul-Simulator-Deutschland#!/game-instances" target="_blank" rel="noopener">R</a>
+      <span class="social-dot">TT</span>
+      <span class="social-dot">DS</span>
+    </div>
+    <div class="footer-columns">
+      <div class="footer-col">
+        <button class="footer-link" type="button" data-page="play">Play</button>
+        <button class="footer-link" type="button" data-page="updates">Update Verlauf</button>
+        <button class="footer-link" type="button" data-page="ranks">Ranks</button>
+      </div>
+      <div class="footer-col">
+        <button class="footer-link" type="button" data-page="feedback">Feedback</button>
+        <button class="footer-link" type="button" data-page="impressum">Impressum</button>
+        <button class="footer-link" type="button" data-page="datenschutz">Datenschutz</button>
+      </div>
+      <div class="footer-col">
+        <span>Driving School Germany</span>
+        <span>TikTok: @driving_school.rblx</span>
+        <span>Roblox Game ID: 121813712597511</span>
+      </div>
+    </div>
+    <div class="brand-footer">Allens Games<span>Driving School Germany</span></div>
+  </div>
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll("[data-page]");
+  const scrollButtons = document.querySelectorAll("[data-scroll]");
+  const pages = document.querySelectorAll(".page");
+  const navButtons = document.querySelectorAll(".menu button");
+  const revealItems = document.querySelectorAll(".reveal");
+  const heroCar = document.querySelector("#hero-car");
+
+  function showPage(id){
+    pages.forEach(function(page){
+      page.classList.toggle("active", page.id === id);
+    });
+    navButtons.forEach(function(button){
+      const isActive = button.dataset.page === id;
+      button.classList.toggle("active", isActive);
+      if(isActive){
+        button.setAttribute("aria-current", "page");
+      }else{
+        button.removeAttribute("aria-current");
+      }
+    });
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+
+  buttons.forEach(function(button){
+    button.addEventListener("click", function(){
+      showPage(button.dataset.page);
+    });
+  });
+
+  scrollButtons.forEach(function(button){
+    button.addEventListener("click", function(){
+      const target = document.querySelector("#" + button.dataset.scroll);
+      if(target){
+        target.scrollIntoView({behavior:"smooth", block:"start"});
+      }
+    });
+  });
+
+  if("IntersectionObserver" in window){
+    const observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.16});
+
+    revealItems.forEach(function(item){
+      if(!item.classList.contains("visible")){
+        observer.observe(item);
+      }
+    });
+  }else{
+    revealItems.forEach(function(item){
+      item.classList.add("visible");
+    });
+  }
+
+  function updateHeroCar(){
+    if(!heroCar){ return; }
+    const progress = Math.max(-1, Math.min(1, window.scrollY / Math.max(1, window.innerHeight)));
+    const offset = Math.round(progress * -54);
+    const tilt = Math.round(progress * 5);
+    heroCar.style.setProperty("--drive-offset", offset + "px");
+    heroCar.style.setProperty("--drive-tilt", tilt + "deg");
+  }
+
+  updateHeroCar();
+  window.addEventListener("scroll", updateHeroCar, {passive:true});
+
+</script>
+</body>
+</html>
