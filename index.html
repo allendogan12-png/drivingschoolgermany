@@ -1888,21 +1888,10 @@ footer:before{
     return "home";
   }
 
-  function routeBase(){
-    const parts = window.location.pathname.split("/").filter(Boolean);
-    const last = parts[parts.length - 1];
-    if(last === "index.html" || pageIds.indexOf(last) >= 0){
-      parts.pop();
-    }
-    return "/" + (parts.length ? parts.join("/") + "/" : "");
-  }
-
   function updateUrl(id, replace){
     const pageId = normalizePage(id);
-    const isFile = window.location.protocol === "file:";
-    const route = isFile ? "#/" + pageId : routeBase() + pageId;
-    if(isFile && window.location.hash === route){ return; }
-    if(!isFile && window.location.pathname.replace(/\/$/, "") === route.replace(/\/$/, "")){ return; }
+    const route = "#/" + pageId;
+    if(window.location.hash === route){ return; }
     if(replace){
       window.history.replaceState({page:pageId}, "", route);
     }else{
